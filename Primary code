@@ -1,0 +1,70 @@
+// Car_payment_schedule.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Alarm system to notify when car payments should be made; assuming payments are made at the start of each month 
+// 
+// for purpose of program, payments are assumed to be made after 24hours (real-world 30 days).
+
+//libraries
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <iomanip>
+#include <stdlib.h>
+#include <chrono>
+using namespace std;
+
+//parameters
+double mileage; //mileage will determine when parts need to be replaced
+bool newCar = true; 
+
+//payment parameters
+bool carInsurance;
+bool carLoanPayment;
+bool roadTax;
+bool tyres;
+bool battery;
+bool airconLiquid;
+
+double duration = 0;
+
+
+int main()
+{
+	std::cout << "Enter the cars mileage:";
+	std::cin >> mileage; // request mileage of user's car.
+
+	if(newCar == true) {
+		// continous loop to calculate passage of time. 
+		auto time_start = std::chrono::high_resolution_clock::now();
+		auto time_current = std::chrono::high_resolution_clock::now();
+
+		duration = std::chrono::duration_cast<std::chrono::seconds>(time_current - time_start).count();
+		// after 1 day, payments are due
+		while (duration >= 86400) {
+			// set payments to true
+			carInsurance == true;
+			carLoanPayment == true;
+			roadTax == true;
+
+			std::cout << "Your payments are due: \n" << "Car Insurance:" << carInsurance << "\n" << "Loan payment:" << carLoanPayment << "\n" << "Road Tax:" << roadTax << "\n";
+
+			if (mileage >= 50000) {
+				// parts need replacing after 50k miles.
+				tyres == true; 
+				battery == true;
+				airconLiquid == true;
+
+				std::cout << "Need new car parts!";
+
+				newCar == false; // set to false to stop loop/ end program.
+			}
+			else {
+				newCar == false; //end program after a day regardless
+			}
+		}
+		
+	}
+	else {
+		return 0;
+	}
+
+}
